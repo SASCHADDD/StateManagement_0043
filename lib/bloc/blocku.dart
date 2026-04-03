@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class FormEvent {}
@@ -28,5 +29,48 @@ class FormBloc extends Bloc<FormEvent, FormState> {
     on<EmailChanged>((event, emit) {
       emit(FormState(nama: state.nama, email: event.email));
     });
+  }
+}
+
+class FormPage4 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Form Bloc")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: BlocBuilder<FormBloc, FormState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                TextField(
+                  onChanged: (value) =>
+                      context.read<FormBloc>().add(NamaChanged(value)),
+                ),
+                TextField(
+                  onChanged: (value) =>
+                      context.read<FormBloc>().add(EmailChanged(value)),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        //content: Text("${state.nama} - ${state
+                        //.email}"),
+                        content: Text("Submit sukses !"),
+                      ),
+                    );
+                  },
+                  child: Text("Submit"),
+                ),
+                SizedBox(height: 10),
+                Text("Nama: ${state.nama}"),
+                Text("Email: ${state.email}"),
+              ],
+            );
+          },
+        ),
+      ),
+    );
   }
 }
