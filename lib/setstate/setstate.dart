@@ -17,3 +17,44 @@ class _FormPageState extends State<FormPage> {
           "Nama: ${namaController.text}\nEmail: ${emailController.text}";
     });
 }
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Form Input"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: namaController,
+              decoration: InputDecoration(
+                labelText: "Nama",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: submitData,
+              child: Text("Submit"),
+            ),
+            SizedBox(height: 20),
+            Text(
+              hasil,
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
