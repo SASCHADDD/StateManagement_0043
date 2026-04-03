@@ -10,5 +10,10 @@ class _FormPageState extends State<FormPage> {
   final TextEditingController emailController = TextEditingController();
 
   String hasil = "";
-  
+
+  void submitData() {
+    setState(() {
+      hasil =
+          "Nama: ${namaController.text}\nEmail: ${emailController.text}";
+    });
 }
