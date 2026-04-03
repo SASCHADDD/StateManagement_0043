@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:state_management/setstate/setstate.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => FormProvider(),
-      child: MyApp(),
-    ),
+    ChangeNotifierProvider(create: (context) => FormProvider(), child: MyApp()),
   );
 }
 
@@ -16,9 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FormPage(),
-    );
+    return MaterialApp(home: FormPage());
   }
 }
 
@@ -36,6 +30,7 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 }
+
 class FormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
